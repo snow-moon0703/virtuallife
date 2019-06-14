@@ -11,7 +11,7 @@ return [
     | the validator class. Some of these rules have multiple versions such
     | as the size rules. Feel free to tweak each of these messages here.
     |
-    */
+     */
 
     'accepted'             => 'The :attribute must be accepted.',
     'active_url'           => 'The :attribute is not a valid URL.',
@@ -122,9 +122,9 @@ return [
     | convention "attribute.rule" to name the lines. This makes it quick to
     | specify a specific custom language line for a given attribute rule.
     |
-    */
+     */
 
-    'custom' => [
+    'custom'               => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
@@ -139,8 +139,33 @@ return [
     | with something more reader friendly such as E-Mail Address instead
     | of "email". This simply helps us make messages a little cleaner.
     |
-    */
+     */
 
-    'attributes' => [],
+    'attributes'           => [
+        'name'                  => 'name',
+        'email'                 => 'email',
+        'password'              => 'password',
+        'file'                  => 'file',
+        'phone'                 => 'phone',
+        'gender'                => 'gender',
+        'country'               => 'country',
+        'password'              => 'password',
+        'startdate'             => 'startdate',
+        'enddate'               => 'enddate',
+        'content'               => 'content',
+        'summary'               => 'summary',
+        'price'                 => 'price',
+        'img0'                  => 'img',
+        'img1'                  => 'img',
+        'img2'                  => 'img',
+        'img3'                  => 'img',
+        'img4'                  => 'img',
+        'video'                 => 'video',
+        'password_confirmation' => 'password',
+        'account'               => 'account',
+        'title'                 => 'title',
+        'text'                  => 'text',
+        'title'                 => 'title',
+    ],
 
 ];
