@@ -14,19 +14,6 @@
 Route::pattern('id', '[0-9]+');
 Route::pattern('rank', '[0-9]+');
 
-Route::get('/englishvr/playrecord', 'EnglishVR\PlayrecordController@index')->name('englishvr.playrecord');
-Route::get('/englishvr/login', 'EnglishVR\LoginController@showLoginForm')->name('englishvr.login');
-Route::post('/englishvr/login', 'EnglishVR\LoginController@login');
-Route::get('/englishvr/logout', 'EnglishVR\LoginController@logout');
-Route::post('/englishvr/logout', 'EnglishVR\LoginController@logout')->name('englishvr.logout');
-
-Route::post('/englishgame/login', 'Englishgame\MemberController@index')->name('englishgame.login');
-Route::post('/englishgame/coursestudent', 'Englishgame\MemberController@show_coursestudent')->name('coursestudent.show');
-Route::post('/englishgame/LevelRecord', 'Englishgame\MemberController@store_LevelRecord')->name('LevelRecord.store');
-Route::post('/englishgame/ErrorRecord', 'Englishgame\MemberController@store_ErrorRecord')->name('ErrorRecord.store');
-Route::post('/englishgame/PlayRecord', 'Englishgame\MemberController@store_PlayRecord')->name('PlayRecord.store');
-Route::post('/englishgame/CourseStudent', 'Englishgame\MemberController@store_CourseStudent')->name('CourseStudent.store');
-
 Route::get('/news', 'NewController@index')->name('news.index');
 Route::get('/news/{id}', 'NewController@show')->name('news.show');
 Route::get('/product', 'ProductController@index')->name('product.index');
@@ -40,19 +27,15 @@ Route::get('/order/re', 'OrderController@index_re')->name('order.index_re');
 Route::post('/order/receive', 'OrderController@store')->name('order.store');
 Route::get('/', 'ProductController@index_home')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/error', function () {
     return view('error');
 })->name('error');
-
-// Route::get('/lang', 'NewController@index')->name('news.index');
 Route::get('lang/{lang}', function ($lang) {
     App::setLocale($lang);
     Session::put('locale', $lang);
     return redirect()->back();
 })->name('lang');
 
-// Route::get('/ranking', 'ProductController@index_ranking')->name('ranking.index');
 Route::middleware('auth')->group(function () {
     $this->post('/order/create/{id}', 'OrderController@create')->name('order.create');
     $this->get('/my/order', 'OrderController@index_img')->name('my_order.index');
@@ -68,7 +51,6 @@ Route::middleware('auth')->group(function () {
     $this->get('/order', 'OrderController@index')->name('order.index');
     $this->post('/review/store', 'ProductController@store_review')->name('review.store');
     $this->get('/apply/create', 'MemberController@create')->name('creator.create');
-
     $this->get('/Download/{download}', 'ProductController@download')->name('product.download');
 
 });
@@ -92,18 +74,7 @@ Route::middleware('auth.creator')->group(function () {
     $this->get('/report', 'OrderController@index_report')->name('report.index');
     $this->get('/report/{date}', 'OrderController@index_report')->name('report.index');
 });
-
-// Route::get('/product/record/{id}', 'ProductController@show_record')->name('product.record');
-// Route::get('/', function () {
-//     return view('index');
-// })->name('index');
-
-// Route::get('/file', function () {
-//     abort(404);
-// })->name('index.ex');
-
 Auth::routes();
-
 Route::middleware('auth.admin:admin')->group(function () {
     $this->get('/news/create', 'NewController@create')->name('new.create');
     $this->post('/news/store', 'NewController@store')->name('new.store');
@@ -141,3 +112,17 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         $this->get('/', 'IndexController@index');
     });
 });
+
+Route::get('/englishvr/playrecord', 'EnglishVR\PlayrecordController@index')->name('englishvr.playrecord');
+Route::get('/englishvr/login', 'EnglishVR\LoginController@showLoginForm')->name('englishvr.login');
+Route::post('/englishvr/login', 'EnglishVR\LoginController@login');
+Route::get('/englishvr/logout', 'EnglishVR\LoginController@logout');
+Route::post('/englishvr/logout', 'EnglishVR\LoginController@logout')->name('englishvr.logout');
+
+Route::post('/englishgame/login', 'Englishgame\MemberController@index')->name('englishgame.login');
+Route::post('/englishgame/coursestudent', 'Englishgame\MemberController@show_coursestudent')->name('coursestudent.show');
+Route::post('/englishgame/LevelRecord', 'Englishgame\MemberController@store_LevelRecord')->name('LevelRecord.store');
+Route::post('/englishgame/ErrorRecord', 'Englishgame\MemberController@store_ErrorRecord')->name('ErrorRecord.store');
+Route::post('/englishgame/PlayRecord', 'Englishgame\MemberController@store_PlayRecord')->name('PlayRecord.store');
+Route::post('/englishgame/CourseStudent', 'Englishgame\MemberController@store_CourseStudent')->name('CourseStudent.store');
+
